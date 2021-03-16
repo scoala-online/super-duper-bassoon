@@ -21,7 +21,6 @@ public class Song
   private String name;
 
   @Column(name = "release_date", nullable = false)
-  @Temporal(TemporalType.DATE)
   private LocalDate releaseDate;
 
   @Column(name = "song_genre", nullable = false, length = 20)
@@ -50,7 +49,7 @@ public class Song
     return name;
   }
 
-  public Date getReleaseDate() {
+  public LocalDate getReleaseDate() {
     return releaseDate;
   }
 
@@ -73,7 +72,7 @@ public class Song
     this.name = name;
   }
 
-  public void setReleaseDate(Date releaseDate) {
+  public void setReleaseDate(LocalDate releaseDate) {
     this.releaseDate = releaseDate;
   }
 

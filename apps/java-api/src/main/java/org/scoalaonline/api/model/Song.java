@@ -22,7 +22,7 @@ public class Song
 
   @Column(name = "release_date", nullable = false)
   @Temporal(TemporalType.DATE)
-  private Date releaseDate;
+  private LocalDate releaseDate;
 
   @Column(name = "song_genre", nullable = false, length = 20)
   private String genre;

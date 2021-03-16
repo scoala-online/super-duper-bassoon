@@ -1,6 +1,5 @@
 package org.scoalaonline.api;
 
-import org.scoalaonline.api.model.Artist;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

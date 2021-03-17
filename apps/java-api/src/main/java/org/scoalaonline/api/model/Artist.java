@@ -1,5 +1,7 @@
 package org.scoalaonline.api.model;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -7,7 +9,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "artist")
-
+@JsonIdentityInfo(
+  generator = ObjectIdGenerators.PropertyGenerator.class,
+  property = "id")
 public class Artist
 {
   //--------------- Fields ---------------
@@ -19,6 +23,7 @@ public class Artist
   @Column(name = "artist_name", nullable = false, length = 50)
   private String name;
 
+  @JsonBackReference
   @ManyToMany(mappedBy = "artists")
   private Set<Song> songs;
 

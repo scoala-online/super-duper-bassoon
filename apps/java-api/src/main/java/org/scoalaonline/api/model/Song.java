@@ -1,5 +1,7 @@
 package org.scoalaonline.api.model;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -8,7 +10,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "song")
-
+@JsonIdentityInfo(
+  generator = ObjectIdGenerators.PropertyGenerator.class,
+  property = "id")
 public class Song
 {
   //--------------- Fields ---------------
@@ -17,13 +21,13 @@ public class Song
   @Column(name = "song_id")
   private long id;
 
-  @Column(name = "song_name", nullable = false, length = 50)
+  @Column(name = "song_name", length = 50)
   private String name;
 
-  @Column(name = "release_date", nullable = false)
+  @Column(name = "release_date")
   private LocalDate releaseDate;
 
-  @Column(name = "song_genre", nullable = false, length = 20)
+  @Column(name = "song_genre", length = 20)
   private String genre;
 
   @ManyToMany

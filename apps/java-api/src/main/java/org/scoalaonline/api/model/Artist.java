@@ -1,77 +1,83 @@
 package org.scoalaonline.api.model;
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.scoalaonline.api.serializer.SongSerializer;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "artist")
 @JsonIdentityInfo(
   generator = ObjectIdGenerators.PropertyGenerator.class,
-  property = "id")
+  property = "idArtist")
 public class Artist
 {
   //--------------- Fields ---------------
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "artist_id")
-  private long id;
+  private long idArtist;
 
   @Column(name = "artist_name", nullable = false, length = 50)
   private String name;
 
-  @JsonBackReference
-  @ManyToMany(mappedBy = "artists")
-  private Set<Song> songs;
+  @ManyToMany
+  @JoinTable(
+    name = "song_artist",
+    joinColumns = @JoinColumn(name = "artist_id"),
+    inverseJoinColumns = @JoinColumn(name = "song_id")
+  )
+  @JsonSerialize(using = SongSerializer.class)
+  private List<Song> songs;
 
   public Artist() {
   }
 
   //--------------- Getters ---------------
 
-  public long getId() {
-    return id;
+  public long getIdArtist() {
+    return idArtist;
   }
 
   public String getName() {
     return name;
   }
 
-  public Set<Song> getSongs() {
-    return new HashSet<Song>(songs);
+  public List<Song> getSongs() {
+    return new ArrayList<Song>(songs);
   }
 
   //--------------- Setters ---------------
 
-  public void setId(long id) {
-    this.id = id;
+  public void setIdArtist(long idArtist) {
+    this.idArtist = idArtist;
   }
 
   public void setName(String name) {
     this.name = name;
   }
 
-  public void setSongs(Set<Song> songs) {
-    this.songs = new HashSet<Song>(songs);
+  public void setSongs(List<Song> songs) {
+    this.songs = new ArrayList<Song>(songs);
   }
 
   //--------------- Equals & Hashcode ---------------
+
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (!(o instanceof Artist)) return false;
     Artist artist = (Artist) o;
-    return id == artist.id &&
+    return idArtist == artist.idArtist &&
       Objects.equals(name, artist.name) &&
       Objects.equals(songs, artist.songs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, songs);
+    return Objects.hash(idArtist, name, songs);
   }
 }

@@ -33,6 +33,12 @@ public class SongController {
     return new ResponseEntity<>(song, HttpStatus.OK);
   }
 
+  @PostMapping(value = {"", "/"})
+  public ResponseEntity<Song> addSong (@RequestBody Song song) {
+    Song savedSong = songService.addSong(song);
+    return new ResponseEntity<>(savedSong, HttpStatus.CREATED);
+  }
+  
   @PutMapping(value = ("/{id}"))
   public ResponseEntity<Song> updateSong (@PathVariable("id") long id,
                                           @RequestBody Song song) {
@@ -44,5 +50,4 @@ public class SongController {
         HttpStatus.NOT_FOUND, "Cannot update non-existing Song", new ResourceNotFoundException()
       );
     }
-  }
 }

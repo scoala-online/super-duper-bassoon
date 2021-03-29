@@ -48,6 +48,7 @@ public class ArtistController {
       throw new ResponseStatusException(
         HttpStatus.NOT_FOUND, "Cannot update non-existing Artist", new ResourceNotFoundException()
       );
+    }
   }
 
   @DeleteMapping(value = ("/{id}"))

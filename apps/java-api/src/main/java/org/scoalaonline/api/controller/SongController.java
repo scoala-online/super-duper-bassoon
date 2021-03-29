@@ -49,6 +49,7 @@ public class SongController {
       throw new ResponseStatusException(
         HttpStatus.NOT_FOUND, "Cannot update non-existing Song", new ResourceNotFoundException()
       );
+    }
   }
 
   @DeleteMapping(value = ("/{id}"))

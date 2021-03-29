@@ -32,4 +32,17 @@ public class SongController {
       ));
     return new ResponseEntity<>(song, HttpStatus.OK);
   }
+
+  @PutMapping(value = ("/{id}"))
+  public ResponseEntity<Song> updateSong (@PathVariable("id") long id,
+                                          @RequestBody Song song) {
+    if (songService.songExists(id)) {
+      Song updatedSong = songService.updateSong(id, song);
+      return new ResponseEntity<>(updatedSong, HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot update non-existing Song", new ResourceNotFoundException()
+      );
+    }
+  }
 }

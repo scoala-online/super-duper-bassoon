@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/artist")
+@RequestMapping(value = "/artists")
 public class ArtistController {
   @Autowired
   ArtistService artistService;

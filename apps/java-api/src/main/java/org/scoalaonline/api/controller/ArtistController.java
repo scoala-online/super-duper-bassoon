@@ -37,7 +37,7 @@ public class ArtistController {
     Artist savedArtist = artistService.addArtist(artist);
     return new ResponseEntity<>(savedArtist, HttpStatus.CREATED);
   }
-  
+
   @PutMapping(value = ("/{id}"))
   public ResponseEntity<Artist> updateArtist (@PathVariable("id") long id,
                                               @RequestBody Artist artist) {
@@ -49,4 +49,17 @@ public class ArtistController {
         HttpStatus.NOT_FOUND, "Cannot update non-existing Artist", new ResourceNotFoundException()
       );
     }
+  }
+
+  @DeleteMapping(value = ("/{id}"))
+  public ResponseEntity<HttpStatus> deleteArtist (@PathVariable("id") long id) {
+    if (artistService.artistExists(id)) {
+      artistService.deleteArtist(id);
+      return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot delete non-existing Artist", new ResourceNotFoundException()
+      );
+    }
+  }
 }

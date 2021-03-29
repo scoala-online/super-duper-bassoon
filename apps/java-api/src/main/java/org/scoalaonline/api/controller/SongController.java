@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/songs")
@@ -24,7 +25,7 @@ public class SongController {
   }
 
   @GetMapping(value = "/{id}")
-  public ResponseEntity<Song> getSongById (@PathVariable("id") long id){
+  public ResponseEntity<Song> getSongById (@PathVariable("id") UUID id){
     System.out.println(id);
     Song song = songService.getSongById(id)
       .orElseThrow(() -> new ResponseStatusException(
@@ -40,7 +41,7 @@ public class SongController {
   }
 
   @PutMapping(value = ("/{id}"))
-  public ResponseEntity<Song> updateSong (@PathVariable("id") long id,
+  public ResponseEntity<Song> updateSong (@PathVariable("id") UUID id,
                                           @RequestBody Song song) {
     if (songService.songExists(id)) {
       Song updatedSong = songService.updateSong(id, song);
@@ -53,7 +54,7 @@ public class SongController {
   }
 
   @DeleteMapping(value = ("/{id}"))
-  public ResponseEntity<HttpStatus> deleteSong (@PathVariable("id") long id) {
+  public ResponseEntity<HttpStatus> deleteSong (@PathVariable("id") UUID id) {
     if (songService.songExists(id)) {
       songService.deleteSong(id);
       return new ResponseEntity<>(HttpStatus.ACCEPTED);

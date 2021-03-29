@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class SongService {
@@ -17,7 +18,7 @@ public class SongService {
     return songRepo.findAll();
   }
 
-  public Optional<Song> getSongById (long id){
+  public Optional<Song> getSongById (UUID id){
     return songRepo.findById(id);
   }
 
@@ -32,7 +33,7 @@ public class SongService {
     return songRepo.save(songToSave);
   }
 
-  public Song updateSong (long id, Song song) {
+  public Song updateSong (UUID id, Song song) {
     Song songToUpdate = songRepo.findById(id).get();
 
     if (song.getName() != null) {
@@ -54,11 +55,11 @@ public class SongService {
     return songRepo.save(songToUpdate);
   }
 
-  public void deleteSong (long id) {
+  public void deleteSong (UUID id) {
     songRepo.deleteById(id);
   }
 
-  public boolean songExists (long id) {
+  public boolean songExists (UUID id) {
     return songRepo.existsById(id);
   }
 }

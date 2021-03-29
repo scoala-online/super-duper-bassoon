@@ -9,6 +9,7 @@ import org.scoalaonline.api.model.Song;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SongSerializer extends StdSerializer<List<Song>> {
   public SongSerializer(){
@@ -20,7 +21,7 @@ public class SongSerializer extends StdSerializer<List<Song>> {
 
   @Override
   public void serialize(List<Song> songs, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-    List<Long> ids = new ArrayList<>();
+    List<UUID> ids = new ArrayList<>();
     for (Song song : songs){
       ids.add(song.getIdSong());
     }

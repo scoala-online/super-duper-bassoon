@@ -2,6 +2,9 @@ package org.scoalaonline.api.model;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
 import org.scoalaonline.api.serializer.ArtistSerializer;
 
 import javax.persistence.*;
@@ -18,9 +21,20 @@ public class Song
 
   //--------------- Fields ---------------
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "song_id")
-  private long idSong;
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(
+    name = "UUID",
+    strategy = "org.hibernate.id.UUIDGenerator",
+    parameters = {
+      @Parameter(
+        name = "uuid_gen_strategy_class",
+        value = "org.hibernate.id.uuid.CustomVersionOneStrategy"
+      )
+    }
+  )
+  @Type(type="uuid-char")
+  @Column(name = "song_id", updatable = false, nullable = false)
+  private UUID idSong;
 
   @Column(name = "song_name", length = 50)
   private String name;
@@ -47,7 +61,7 @@ public class Song
   //--------------- Getters ---------------
 
 
-  public long getIdSong() {
+  public UUID getIdSong() {
     return idSong;
   }
 
@@ -70,7 +84,7 @@ public class Song
   //--------------- Setters ---------------
 
 
-  public void setIdSong(long idSong) {
+  public void setIdSong(UUID idSong) {
     this.idSong = idSong;
   }
 

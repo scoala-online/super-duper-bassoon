@@ -32,4 +32,10 @@ public class SongController {
       ));
     return new ResponseEntity<>(song, HttpStatus.OK);
   }
+
+  @PostMapping(value = {"", "/"})
+  public ResponseEntity<Song> addSong (@RequestBody Song song) {
+    Song savedSong = songService.addSong(song);
+    return new ResponseEntity<>(savedSong, HttpStatus.CREATED);
+  }
 }

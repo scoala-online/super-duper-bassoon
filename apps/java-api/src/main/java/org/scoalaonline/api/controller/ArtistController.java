@@ -31,4 +31,10 @@ public class ArtistController {
       ));
     return new ResponseEntity<>(artist, HttpStatus.OK);
   }
+
+  @PostMapping(value = {"", "/"})
+  public ResponseEntity<Artist> addArtist (@RequestBody Artist artist) {
+    Artist savedArtist = artistService.addArtist(artist);
+    return new ResponseEntity<>(savedArtist, HttpStatus.CREATED);
+  }
 }

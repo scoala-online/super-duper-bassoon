@@ -37,4 +37,16 @@ public class ArtistController {
     Artist savedArtist = artistService.addArtist(artist);
     return new ResponseEntity<>(savedArtist, HttpStatus.CREATED);
   }
+  
+  @PutMapping(value = ("/{id}"))
+  public ResponseEntity<Artist> updateArtist (@PathVariable("id") long id,
+                                              @RequestBody Artist artist) {
+    if (artistService.artistExists(id)) {
+      Artist updatedArtist = artistService.updateArtist(id, artist);
+      return new ResponseEntity<>(updatedArtist, HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot update non-existing Artist", new ResourceNotFoundException()
+      );
+    }
 }

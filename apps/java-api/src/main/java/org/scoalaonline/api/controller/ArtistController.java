@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/artists")
@@ -24,7 +25,7 @@ public class ArtistController {
   }
 
   @GetMapping(value = "/{id}")
-  public ResponseEntity<Artist> getArtistById(@PathVariable("id") long id) {
+  public ResponseEntity<Artist> getArtistById(@PathVariable("id") UUID id) {
     Artist artist = artistService.getArtistById(id)
       .orElseThrow(() -> new ResponseStatusException(
         HttpStatus.NOT_FOUND, "No Artist found with this ID", new ResourceNotFoundException()
@@ -39,7 +40,7 @@ public class ArtistController {
   }
 
   @PutMapping(value = ("/{id}"))
-  public ResponseEntity<Artist> updateArtist (@PathVariable("id") long id,
+  public ResponseEntity<Artist> updateArtist (@PathVariable("id") UUID id,
                                               @RequestBody Artist artist) {
     if (artistService.artistExists(id)) {
       Artist updatedArtist = artistService.updateArtist(id, artist);
@@ -52,7 +53,7 @@ public class ArtistController {
   }
 
   @DeleteMapping(value = ("/{id}"))
-  public ResponseEntity<HttpStatus> deleteArtist (@PathVariable("id") long id) {
+  public ResponseEntity<HttpStatus> deleteArtist (@PathVariable("id") UUID id) {
     if (artistService.artistExists(id)) {
       artistService.deleteArtist(id);
       return new ResponseEntity<>(HttpStatus.ACCEPTED);

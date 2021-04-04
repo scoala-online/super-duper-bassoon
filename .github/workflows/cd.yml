@@ -57,5 +57,5 @@ jobs:
           cd deployment
           jar_file=$( ls | grep .jar )
           pid=$( ps -ef | grep  'java -jar' | grep $jar_file | awk '{print $2}' )
-          kill &pid
+          kill $pid
           nohup java -jar $jar_file &

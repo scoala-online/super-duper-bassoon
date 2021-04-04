@@ -45,5 +45,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
-        source: "./staging"
+        source: "./apps/java-api/staging"
         target: "test"

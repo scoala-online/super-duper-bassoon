@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.scoala-online</groupId>
 	<artifactId>api</artifactId>
-	<version></version>
+	<version>test</version>
 	<name>java-api</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>

@@ -27,9 +27,7 @@ jobs:
       with:
         java-version: 11
     - name: Build with Maven
-      run: |
-      mvn clean package --file pom.xml
-      ls
+      run: mvn clean package --file pom.xml
       working-directory: ./apps/java-api
     
     - uses: actions/checkout@master
@@ -40,5 +38,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
-        source: "/apps/java-api/target/api-test.jar"
+        source: "/apps/java-api/target"
         target: "test"

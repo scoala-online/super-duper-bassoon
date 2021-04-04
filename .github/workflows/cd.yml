@@ -56,13 +56,12 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         envs: SCOALA_ONLINE_SUPER_DUPER_BASSOON
+        timeout: 60
         script: |
           cd deployment
           export SCOALA_ONLINE_SUPER_DUPER_BASSOON
           jar_file=$( ls | grep .jar )
           pid=$( ps -ef | grep  'java -jar' | grep $jar_file | awk '{print $2}' )
           kill $pid
-          tmux kill-session -t api
           tmux attach -t api
           ( (java -jar $jar_file &) ) && tmux detach
-          exit

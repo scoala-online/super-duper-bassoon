@@ -46,9 +46,10 @@ jobs:
         target: "deployment"
         strip_components: 3
         
-    - name: Execute SSH commmands on remote server
-      uses: JimCronqvist/action-ssh@master
+    - name: ls -a via ssh
+      uses: garygrossgarten/github-action-ssh@release
       with:
-        hosts: ${{ secrets.SSH_HOST }}
-        privateKey: ${{ secrets.KEY }}
-        command: ls -lah
+        command: ls -a
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        privateKey: ${{ secrets.KEY}}

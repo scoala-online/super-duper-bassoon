@@ -62,5 +62,7 @@ jobs:
           jar_file=$( ls | grep .jar )
           pid=$( ps -ef | grep  'java -jar' | grep $jar_file | awk '{print $2}' )
           kill $pid
-          ( (java -jar $jar_file &) ) && sleep 4
+          tmux kill-session -t api
+          tmux attach -t api
+          ( (java -jar $jar_file &) ) && tmux detach
           exit

@@ -63,5 +63,5 @@ jobs:
           jar_file=$( ls | grep .jar )
           pid=$( ps -ef | grep  'java -jar' | grep $jar_file | awk '{print $2}' )
           kill $pid
-          nohup java -jar $jar_file &
-          exit
+          java -jar $jar_file &
+          disown

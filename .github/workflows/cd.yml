@@ -55,6 +55,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd deployment
+          env
           jar_file=$( ls | grep .jar )
           pid=$( ps -ef | grep  'java -jar' | grep $jar_file | awk '{print $2}' )
           kill $pid

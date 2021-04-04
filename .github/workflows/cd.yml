@@ -30,11 +30,12 @@ jobs:
       run: |
         mvn clean package --file pom.xml
         mkdir staging && cp target/*.jar staging
+        ls
       working-directory: ./apps/java-api
     - uses: actions/upload-artifact@v2
       with:
         name: Package
-        path: staging      
+        path: ./apps/java-api/staging      
     
     - uses: actions/checkout@master
     - name: copy file via ssh key

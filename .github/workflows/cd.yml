@@ -46,10 +46,15 @@ jobs:
         target: "deployment"
         strip_components: 3
         
-    - name: ls -a via ssh
-      uses: garygrossgarten/github-action-ssh@release
+    - name: multiple command
+      uses: appleboy/ssh-action@master
       with:
-        command: ls -a
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        privateKey: ${{ secrets.KEY}}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd deployment
+          jar_file = $( ls | grep .jar )
+          pid=$( ps -ef | grep  'java -jar' | grep $jar_file | awk '{print $2}' )
+          nohup java -jar $jar_file &

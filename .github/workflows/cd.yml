@@ -43,5 +43,4 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.KEY }}
         source: "/apps/java-api/staging/*.jar"
-        target: "test"
-        strip_components: 3
+        target: "deployment"

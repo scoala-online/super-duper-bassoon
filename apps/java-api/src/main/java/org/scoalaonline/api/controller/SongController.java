@@ -18,7 +18,7 @@ public class SongController {
   @Autowired
   SongService songService;
 
-  @GetMapping(value = {"", "/test"})
+  @GetMapping(value = {"/test"})
   public ResponseEntity<String> getTest () {
     return new ResponseEntity<>("Wow, you made it !", HttpStatus.OK);
   }

@@ -45,3 +45,10 @@ jobs:
         source: "./apps/java-api/staging/*.jar"
         target: "deployment"
         strip_components: 3
+        
+    - name: Execute SSH commmands on remote server
+      uses: JimCronqvist/action-ssh@master
+      with:
+        hosts: ${{ secrets.SSH_HOST }}
+        privateKey: ${{ secrets.KEY }}
+        command: ls -lah

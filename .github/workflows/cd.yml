@@ -53,6 +53,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
+        envs: ${{ secrets.URL }}
         script: |
           cd deployment
           env

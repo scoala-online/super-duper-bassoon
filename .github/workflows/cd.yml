@@ -48,12 +48,14 @@ jobs:
         
     - name: multiple command
       uses: appleboy/ssh-action@master
+      env: 
+        SCOALA_ONLINE_SUPER_DUPER_BASSOON: ${{ secrets.URL }}
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        envs: ${{ secrets.URL }}
+        envs: SCOALA_ONLINE_SUPER_DUPER_BASSOON
         script: |
           cd deployment
           env

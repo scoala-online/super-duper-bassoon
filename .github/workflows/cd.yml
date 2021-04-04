@@ -58,10 +58,9 @@ jobs:
         envs: SCOALA_ONLINE_SUPER_DUPER_BASSOON
         script: |
           cd deployment
-          echo $SCOALA_ONLINE_SUPER_DUPER_BASSOON
           export SCOALA_ONLINE_SUPER_DUPER_BASSOON
           jar_file=$( ls | grep .jar )
           pid=$( ps -ef | grep  'java -jar' | grep $jar_file | awk '{print $2}' )
           kill $pid
-          java -jar $jar_file &
-          disown
+          ( (java -jar $jar_file &) ) && sleep 4
+          exit

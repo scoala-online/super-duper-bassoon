@@ -35,6 +35,7 @@ jobs:
         java-version: 11
     - run: mvn --batch-mode --update-snapshots verify
     - run: mkdir staging && cp target/*.jar staging
+    - working-directory: ./apps/java-api
     - uses: actions/upload-artifact@v2
       with:
         name: Package

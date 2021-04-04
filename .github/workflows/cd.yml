@@ -28,8 +28,8 @@ jobs:
         java-version: 11
     - name: Build with Maven
       run: |
-      mvn clean package --file pom.xml
-      mkdir staging && cp target/*.jar staging
+        mvn clean package --file pom.xml
+        mkdir staging && cp target/*.jar staging
       working-directory: ./apps/java-api
     - uses: actions/upload-artifact@v2
       with:

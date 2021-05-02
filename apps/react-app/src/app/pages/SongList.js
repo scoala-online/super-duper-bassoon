@@ -1,6 +1,7 @@
-import httpService from '../services/httpService';
-import { Row, td, Container, Button, Table } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
+import { Container, Button, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import httpService from '../services/httpService';
 
 export default function SongList(props) {
   const [songs, setSongs] = useState([]);
@@ -63,6 +64,9 @@ export default function SongList(props) {
       <header>
         <h1>Song List</h1>
       </header>
+        <Link to={'/create'}>
+            <Button variant="outline-dark">Add new Song</Button>
+        </Link>
       <Table striped bordered hover>
         <thead>
           <tr>

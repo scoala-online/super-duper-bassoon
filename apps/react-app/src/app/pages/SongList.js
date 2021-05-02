@@ -64,9 +64,9 @@ export default function SongList(props) {
       <header>
         <h1>Song List</h1>
       </header>
-        <Link to={'/create'}>
-            <Button variant="outline-dark">Add new Song</Button>
-        </Link>
+      <Link to={'/create'}>
+        <Button variant="outline-dark">Add new Song</Button>
+      </Link>
       <Table striped bordered hover>
         <thead>
           <tr>

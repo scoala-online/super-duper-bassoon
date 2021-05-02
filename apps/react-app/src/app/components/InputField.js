@@ -1,5 +1,5 @@
-import React from "react";
-import { Input, FormGroup, Label } from "reactstrap";
+import React from 'react';
+import { Input, FormGroup, Label } from 'reactstrap';
 
 export default function InputField(props) {
   return (

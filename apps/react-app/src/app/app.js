@@ -6,7 +6,7 @@ import SongList from './pages/SongList';
 
 export function App() {
   return (
-    <div>
+    <div className="App">
       <Router>
         <Switch>
           <Route exact path={['/songs', '']} component={SongList} />

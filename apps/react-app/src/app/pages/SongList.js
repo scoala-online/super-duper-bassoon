@@ -60,6 +60,9 @@ export default function SongList(props) {
 
   return (
     <Container>
+      <header>
+        <h1>Song List</h1>
+      </header>
       <Table striped bordered hover>
         <thead>
           <tr>

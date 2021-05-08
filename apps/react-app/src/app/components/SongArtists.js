@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import makeAnimated from 'react-select/animated';
 import AsyncSelect from 'react-select/async';
 import httpService from '../services/httpService';

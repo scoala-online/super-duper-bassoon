@@ -62,23 +62,27 @@ export default function UpdateSong(props) {
 
   function getSong() {
     httpService
-        .get('/songs/' + id)
-        .then((response) => {
-            console.log('getSong Response :');
-            let data = response.data;
-            console.log(response.data);
-            setSong(data);
-            var date = new Date(parseInt(data.releaseDate[0]),parseInt(data.releaseDate[1]) - 1,parseInt(data.releaseDate[2]));
-            setReleaseDate(date);
-        })
-        .catch((e) => {
-            console.log(e);
-          });
-    }
+      .get('/songs/' + id)
+      .then((response) => {
+        console.log('getSong Response :');
+        let data = response.data;
+        console.log(response.data);
+        setSong(data);
+        var date = new Date(
+          parseInt(data.releaseDate[0]),
+          parseInt(data.releaseDate[1]) - 1,
+          parseInt(data.releaseDate[2])
+        );
+        setReleaseDate(date);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 
-    useEffect(() => {
-        getSong();
-    }, [])
+  useEffect(() => {
+    getSong();
+  }, []);
 
   return (
     <div>
@@ -106,7 +110,7 @@ export default function UpdateSong(props) {
           selected={releaseDate}
           showYearDropdown
           scrollableMonthYearDropdown
-          onChange={date => setReleaseDate(date)}
+          onChange={(date) => setReleaseDate(date)}
         />
         <br></br>
 

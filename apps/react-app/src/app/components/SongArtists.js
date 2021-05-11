@@ -24,7 +24,7 @@ export default function SongArtists(props) {
 
   function handleChangeArtists(event) {
     let artists = [];
-    console.log(event)
+    console.log(event);
     if (event) {
       event.forEach((element) => {
         artists.push({ idArtist: element.value, name: element.label });

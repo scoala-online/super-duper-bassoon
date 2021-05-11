@@ -93,7 +93,6 @@ export default function SongList(props) {
                   >
                     <Button variant="dark">Update</Button>
                   </Link>{' '}
-
                   <Button
                     variant="light"
                     onClick={() => deleteSong(song.idSong)}

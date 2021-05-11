@@ -83,7 +83,7 @@ export default function CreateSong(props) {
           selected={releaseDate}
           showYearDropdown
           scrollableMonthYearDropdown
-          onChange={date => setReleaseDate(date)}
+          onChange={(date) => setReleaseDate(date)}
         />
         <br></br>
 

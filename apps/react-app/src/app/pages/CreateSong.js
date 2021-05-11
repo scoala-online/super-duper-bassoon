@@ -81,7 +81,9 @@ export default function CreateSong(props) {
         <br></br>
         <DatePicker
           selected={releaseDate}
-          onChange={(date) => setReleaseDate(date)}
+          showYearDropdown
+          scrollableMonthYearDropdown
+          onChange={date => setReleaseDate(date)}
         />
         <br></br>
 

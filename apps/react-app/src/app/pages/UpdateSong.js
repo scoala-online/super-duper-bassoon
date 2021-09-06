@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import httpService from '../services/httpService';
 import { Button } from 'react-bootstrap';
 import { Label } from 'reactstrap';
 import DatePicker from 'react-datepicker';
-import httpService from '../services/httpService';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import SongArtists from '../components/SongArtists';
 import InputField from '../components/InputField';
 import { useHistory } from 'react-router';
 
-export default function CreateSong(props) {
+export default function UpdateSong(props) {
   let history = useHistory();
+  const params = useParams();
+  const id = params.id;
 
   const [song, setSong] = useState({
     idSong: null,
@@ -30,8 +33,8 @@ export default function CreateSong(props) {
   }
 
   function handleSubmit() {
-    httpService.post('/songs', song).then((response) => {
-      console.log('createStudent Response :');
+    httpService.put('/songs/' + id, song).then((response) => {
+      console.log('update song Response :');
       console.log(response.data);
       history.push('/songs');
     });
@@ -57,10 +60,34 @@ export default function CreateSong(props) {
     });
   }, [releaseDate]);
 
+  function getSong() {
+    httpService
+      .get('/songs/' + id)
+      .then((response) => {
+        console.log('getSong Response :');
+        let data = response.data;
+        console.log(response.data);
+        setSong(data);
+        var date = new Date(
+          parseInt(data.releaseDate[0]),
+          parseInt(data.releaseDate[1]) - 1,
+          parseInt(data.releaseDate[2])
+        );
+        setReleaseDate(date);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  useEffect(() => {
+    getSong();
+  }, []);
+
   return (
     <div>
       <header>
-        <h1>Create Song</h1>
+        <h1>Update Song</h1>
       </header>
       <form>
         <InputField
@@ -90,7 +117,7 @@ export default function CreateSong(props) {
         <SongArtists handleChange={handleChange} artists={song.artists} />
         <br></br>
 
-        <Button onClick={handleSubmit}>Add Song</Button>
+        <Button onClick={handleSubmit}>Update Song</Button>
       </form>
     </div>
   );

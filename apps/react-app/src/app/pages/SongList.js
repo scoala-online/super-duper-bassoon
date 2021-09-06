@@ -86,6 +86,13 @@ export default function SongList(props) {
                 <td>{song.genre}</td>
                 <td>{showDate(song.releaseDate)}</td>
                 <td>
+                  <Link
+                    to={{
+                      pathname: '/update/' + song.idSong,
+                    }}
+                  >
+                    <Button variant="dark">Update</Button>
+                  </Link>{' '}
                   <Button
                     variant="light"
                     onClick={() => deleteSong(song.idSong)}

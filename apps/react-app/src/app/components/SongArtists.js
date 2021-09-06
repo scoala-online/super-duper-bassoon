@@ -24,6 +24,7 @@ export default function SongArtists(props) {
 
   function handleChangeArtists(event) {
     let artists = [];
+    console.log(event);
     if (event) {
       event.forEach((element) => {
         artists.push({ idArtist: element.value, name: element.label });
@@ -58,13 +59,13 @@ export default function SongArtists(props) {
 
   return (
     <>
-      <label>Faculties: </label>
+      <label>Artists: </label>
       <br />
       <AsyncSelect
         cacheOptions
         animatedComponents={animatedComponents}
         styles={customStyles}
-        defaultValue={defaultOptions}
+        value={defaultOptions}
         defaultOptions
         isMulti
         loadOptions={getArtists}
